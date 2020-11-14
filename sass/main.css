@@ -1,0 +1,163 @@
+@import '../node_modules/hover.css/css/hover.css';
+@import '../node_modules/materialize-css/dist/css/materialize.css';
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 78% 0%;
+  }
+  50% {
+    background-position: 23% 100%;
+  }
+  100% {
+    background-position: 78% 0%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 78% 0%;
+  }
+  50% {
+    background-position: 23% 100%;
+  }
+  100% {
+    background-position: 78% 0%;
+  }
+}
+@-o-keyframes AnimationName {
+  0% {
+    background-position: 78% 0%;
+  }
+  50% {
+    background-position: 23% 100%;
+  }
+  100% {
+    background-position: 78% 0%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 78% 0%;
+  }
+  50% {
+    background-position: 23% 100%;
+  }
+  100% {
+    background-position: 78% 0%;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: 0;
+  font-family: "Poppins";
+}
+
+html {
+  font-size: 18px;
+  font-weight: 100;
+}
+
+body {
+  background: #DA70D6;
+  color: #fff;
+}
+
+header {
+  height: 20vh;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+header h1 {
+  font-size: 3rem;
+  font-weight: 200;
+}
+
+form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  width: 50%;
+}
+form input {
+  border: 3px solid green;
+  width: 50%;
+  color: #fff;
+}
+form button {
+  border: none;
+  padding: 1rem;
+  background: none;
+  color: #fff;
+}
+form .select select {
+  background: none;
+  border: none;
+  color: #fff;
+}
+form .select select option:first-child {
+  color: gray;
+}
+form .select select option {
+  color: black;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.todo-container .todo-list {
+  min-width: 30%;
+}
+.todo-container .todo-list .todo-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+.todo-container .todo-list .todo-div .todo-li {
+  flex: 1;
+  font-weight: 400;
+  color: black;
+  padding: 1rem;
+  background: #fff;
+}
+.todo-container .todo-list .todo-div .trash-btn, .todo-container .todo-list .todo-div .complete-btn {
+  border: none;
+  padding: 1rem;
+  color: #fff;
+  cursor: pointer;
+}
+.todo-container .todo-list .todo-div .trash-btn .material-icons, .todo-container .todo-list .todo-div .complete-btn .material-icons {
+  pointer-events: none;
+}
+.todo-container .todo-list .todo-div .complete-btn {
+  background: #33ff13;
+}
+.todo-container .todo-list .todo-div .trash-btn {
+  background: #fd1717;
+}
+
+.fall {
+  opacity: 0;
+  transform: translateY(8rem) rotateZ(20deg);
+  transition: all 0.5s ease-in-out;
+}
+
+.check {
+  opacity: 0.2;
+  transition: all 0.5s ease-in-out;
+  text-decoration: line-through;
+  color: black;
+}
+
+/*# sourceMappingURL=main.css.map */
