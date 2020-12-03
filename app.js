@@ -1,82 +1,135 @@
-// Selectors
-const todoinput = document.querySelector(".todo-input");
-const todobutton = document.querySelector(".todo-button");
-const todocontainer = document.querySelector(".todo-container");
-const todolist = document.querySelector(".todo-list");
-const todofilter = document.querySelector(".todo-filter");
+// Global Selectors
+const todoInput = document.querySelector(".todo-input");
+const todoButton = document.querySelector(".todo-button");
+const todoFilter = document.querySelector(".todo-filter");
+const todoContainer = document.querySelector(".todo-container");
+const todoList = document.querySelector(".todo-list");
 
 // Functions
-// 1. Add to the list
-const addToDo = (e) => {
+function addTodo(e) {
   e.preventDefault();
-  // Create div element
-  const tododiv = document.createElement("div");
-  tododiv.classList.add("todo-div");
-  // Create li element
-  const todoli = document.createElement("li");
-  todoli.classList.add("todo-li");
-  todoli.innerText = todoinput.value;
-  // Create trash button
-  const trashbutton = document.createElement("button");
-  trashbutton.classList.add("trash-btn");
-  trashbutton.innerHTML = '<i class="material-icons">clear</i>';
-  // Create check element
-  const completebutton = document.createElement("button");
-  completebutton.classList.add("complete-btn");
-  completebutton.innerHTML = '<i class="material-icons">check</i>';
-  // Append all three to div
-  tododiv.appendChild(todoli);
-  tododiv.appendChild(completebutton);
-  tododiv.appendChild(trashbutton);
-  // Append div to todo-list
-  todolist.appendChild(tododiv);
-  // Reset input bar
-  todoinput.value = "";
-};
+  // New div
+  const todoDiv = document.createElement("div");
+  todoDiv.classList.add("todo-div");
+  // New Item
+  const todoItem = document.createElement("li");
+  todoItem.innerText = todoInput.value;
+  todoItem.classList.add("todo-li");
+  todoDiv.appendChild(todoItem);
+  // Save to Local
+  saveToLocal(todoInput.value);
+  // Complete Button
+  const completeBtn = document.createElement("button");
+  completeBtn.innerHTML = '<i class="fa fa-check"></i>';
+  completeBtn.classList.add("complete-btn");
+  todoDiv.appendChild(completeBtn);
+  // Trash Button
+  const trashBtn = document.createElement("button");
+  trashBtn.innerHTML = '<i class="fa fa-trash"></i>';
+  trashBtn.classList.add("trash-btn");
+  todoDiv.appendChild(trashBtn);
 
-// 2. Remove from the list
-const removeCheck = (e) => {
+  // Append All
+  todoList.appendChild(todoDiv);
+  todoInput.value = "";
+}
+
+function removeItem(e) {
   const item = e.target;
-  if (item.innerText === "clear") {
+  if (item.classList.contains("trash-btn")) {
     item.parentElement.classList.add("fall");
+    removeLocaltodo(item.parentElement);
     item.parentElement.addEventListener("transitionend", () => {
       item.parentElement.remove();
     });
   }
-
-  if (item.innerText === "check") {
+  if (item.classList.contains("complete-btn")) {
     item.parentElement.classList.toggle("check");
   }
-};
+}
 
-// 3. Filter the list
-const filterToDo = (e) => {
-  const item = todolist.childNodes;
-  item.forEach((element) => {
+function filterTodo(e) {
+  const todo = todoList.childNodes;
+  todo.forEach((list) => {
     switch (e.target.value) {
       case "all":
-        element.style.display = "flex";
+        list.style.display = "flex";
         break;
       case "completed":
-        if (element.classList.contains("check")) {
-          element.style.display = "flex";
+        if (list.classList.contains("check")) {
+          list.style.display = "flex";
         } else {
-          element.style.display = "none";
+          list.style.display = "none";
         }
         break;
       case "uncompleted":
-        if (!element.classList.contains("check")) {
-          element.style.display = "flex";
+        if (!list.classList.contains("check")) {
+          list.style.display = "flex";
         } else {
-          element.style.display = "none";
+          list.style.display = "none";
         }
         break;
     }
   });
-};
-// 4. Save to local storage and remove.
+}
 
-// Event Listeners
-todobutton.addEventListener("click", addToDo);
-todolist.addEventListener("click", removeCheck);
-todofilter.addEventListener("click", filterToDo);
+function saveToLocal(todo) {
+  let todos;
+  if (localStorage.getItem("list") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("list"));
+  }
+  todos.push(todo);
+  localStorage.setItem("list", JSON.stringify(todos));
+}
+
+function getTodo() {
+  let todos;
+  if (localStorage.getItem("list") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("list"));
+  }
+
+  todos.forEach((element) => {
+    const todoDiv = document.createElement("div");
+    todoDiv.classList.add("todo-div");
+    // New Item
+    const todoItem = document.createElement("li");
+    todoItem.innerText = element;
+    todoItem.classList.add("todo-li");
+    todoDiv.appendChild(todoItem);
+    // Complete Button
+    const completeBtn = document.createElement("button");
+    completeBtn.innerHTML = '<i class="fa fa-check"></i>';
+    completeBtn.classList.add("complete-btn");
+    todoDiv.appendChild(completeBtn);
+    // Trash Button
+    const trashBtn = document.createElement("button");
+    trashBtn.innerHTML = '<i class="fa fa-trash"></i>';
+    trashBtn.classList.add("trash-btn");
+    todoDiv.appendChild(trashBtn);
+    // Append All
+    todoList.appendChild(todoDiv);
+  });
+}
+
+function removeLocaltodo(todo) {
+  let todos;
+  if (localStorage.getItem("list") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("list"));
+  }
+
+  const todoIndex = todo.children[0].innerText;
+  todos.splice(todos.indexOf(todoIndex), 1);
+  localStorage.setItem("list", JSON.stringify(todos));
+}
+
+// EventListeners
+todoButton.addEventListener("click", addTodo);
+todoList.addEventListener("click", removeItem);
+todoFilter.addEventListener("click", filterTodo);
+document.addEventListener("DOMContentLoaded", getTodo);

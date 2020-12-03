@@ -1,255 +1,113 @@
-@import 'components/mixin/mixins';
-@import 'components/placeholder/placeholders';
-@import 'components/variable/variables';
-@import '../node_modules/hover.css/css/hover.css';
-@import '../node_modules/materialize-css/dist/css/materialize.css';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import "components/mixin/mixins";
+@import "components/placeholder/placeholders";
+@import "components/variable/variables";
+@import "../node_modules/hover.css/css/hover.css";
+@import "../node_modules/materialize-css/dist/css/materialize.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: 0;
-    font-family: "Poppins";
+  padding: 0;
+  margin: 0;
+  box-sizing: 0;
+  font-family: "Poppins";
 }
 
 html {
-    font: {
-        size: 18px;
-        weight: 100;
-    }
+  font: {
+    size: 18px;
+    weight: 100;
+  }
 }
 
 body {
-    background: #DA70D6;
-    color: #fff;
+  background: #da70d6;
+  color: #fff;
 }
 
 header {
-    //@include border(3px, black);
-    @include dimension(20vh, auto);
-    @include flex(flex, row, center,center);
-    h1 {
-        font: {
-            size: 3rem;
-            weight: 200;
-        }
+  @include dimension(20vh, auto);
+  @include flex(flex, row, center, center);
+  h1 {
+    font: {
+      size: 3rem;
+      weight: 200;
     }
+  }
 }
 
 form {
-    //@include border(3px, black);
-    margin: 0 auto;
-    @include flex(flex, row, center,center);
-    @include dimension(20vh, 50%);
-    input {
-        @include border(3px, green);
-        width: 50%;
-        color: #fff;
+  margin: 0 auto;
+  @include flex(flex, row, center, center);
+  @include dimension(20vh, 50%);
+  input {
+    @include border(3px, green);
+    width: 50%;
+    color: #fff;
+  }
+  button {
+    border: none;
+    padding: 1rem;
+    background: none;
+    color: #fff;
+  }
+  .select {
+    select {
+      background: none;
+      border: none;
+      color: #fff;
+      option:first-child {
+        color: gray;
+      }
+      option {
+        color: black;
+      }
     }
-    button {
-        border: none;
-        padding: 1rem;
-        background: none;
-        color: #fff;
-    }
-    .select {
-        //@include border(3px, black);
-        select {
-            background: none;
-            border: none;
-            color: #fff;
-            option:first-child {
-                color: gray;
-            }
-            option {
-                color: black;
-            }
-        }
-    }
+  }
 }
 
 .todo-container {
-    @include flex(flex, row, center,center);
-    .todo-list {
-        min-width: 30%;
-        .todo-div {
-            @include flex(flex, row, space-between,center);
-            margin: 1rem;
-            .todo-li {
-                flex: 1;
-                font-weight: 400;
-                color: black;
-                padding: 1rem;
-                background: #fff;
-            }
-            .trash-btn, .complete-btn {
-                border: none;
-                padding: 1rem;
-                color: #fff;
-                cursor: pointer;
-                .material-icons {
-                    pointer-events: none;
-                }
-            }
-            .complete-btn {
-                background: #33ff13;
-            }
-            .trash-btn {
-                background: #fd1717;
-            }
+  @include flex(flex, row, center, center);
+  .todo-list {
+    min-width: 30%;
+    .todo-div {
+      @include flex(flex, row, space-between, center);
+      margin: 1rem;
+      .todo-li {
+        flex: 1;
+        font-weight: 400;
+        color: black;
+        padding: 1rem;
+        background: #fff;
+      }
+      .trash-btn,
+      .complete-btn {
+        border: none;
+        padding: 1rem;
+        color: #fff;
+        cursor: pointer;
+        i {
+          pointer-events: none;
         }
+      }
+      .complete-btn {
+        background: #33ff13;
+      }
+      .trash-btn {
+        background: #fd1717;
+      }
     }
+  }
 }
 
 .fall {
-    opacity: 0;
-    transform: translateY(8rem) rotateZ(20deg);
-    transition: all .5s ease-in-out;
+  opacity: 0;
+  transform: translateY(8rem) rotateZ(20deg);
+  transition: all 0.5s ease-in-out;
 }
 
 .check {
-    opacity: .2;
-    transition: all .5s ease-in-out;
-    text-decoration: line-through;
-    color: black;
+  opacity: 0.2;
+  transition: all 0.5s ease-in-out;
+  text-decoration: line-through;
+  color: black;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// header {
-//     h1 {
-//         font-size: 2.5rem;
-//     }
-// }
-
-// header, form {
-//     //@include border(3px, black);
-//     @include dimension(20vh, auto);
-//     @include flex(flex,row,center,center);
-// }
-
-// form input, form button {
-//     padding: .5rem;
-//     font-size: 2rem;
-//     border: none;
-//     background: #fff;
-// }
-
-// form button {
-//     color: rgb(2, 182, 125);
-//     background: #fff;
-//     cursor: pointer;
-//     transition: all .3s ease-in-out;
-//     &:hover {
-//         background: rgb(2, 182, 125);
-//         color: #fff;
-//     }
-// }
-
-// .container {
-//     @include flex(flex,row,center,center);
-//     //@include border(3px, black);
-//     .todo-list {
-//         list-style: none;
-//         min-width: 30%;
-//         //@include border(3px, black);
-//     }
-// }
-
-
-// .todo-div {
-//     margin: .5rem;
-//     @include flex(flex,row,center,center);
-//     font-size: 1.5rem;
-//     background-color: #fff;
-//     color: black;
-//     transition: all .5s ease-in-out;
-//     //@include border(3px, black);
-// }
-
-// .todo-li {
-//     flex: 1;
-// }
-
-// .complete-btn, .trash-btn {
-//     background-color: rgb(231, 127, 29);
-//     border: none;
-//     cursor: pointer;
-//     color: #fff;
-//     padding: 1rem;
-// }
-
-// .complete-btn {
-//     background-color: rgb(2, 182, 125);
-// }
-
-// .todo-li {
-//     padding: 0rem .5rem;
-// }
-
-// .fa-check, .fa-trash {
-//     pointer-events: none;
-// }
-
-// .completed {
-//     text-decoration: line-through;
-//     opacity: .5;
-// }
-
-// .fall {
-//     transform: translateY(8rem) rotateZ(20deg);
-//     opacity: 0;
-//     transition: all .5s ease-in-out;
-// }
-
-// select {
-//     appearance: none;
-//     -webkit-appearance: none;
-//     -moz-appearance: none;
-//     border: none;
-//     color: rgb(2, 182, 125);
-//     width: 10rem;
-//     cursor: pointer;
-//     padding: 1rem;
-// }
-
-// .select {
-//     margin: 1rem;
-//     position: relative;
-//     overflow: hidden;
-//     &::after {
-//         content: '\25BC';
-//         position: absolute;
-//         top: 0;
-//         right: 0;
-//         background-color: rgb(2, 182, 125);
-//         padding: 1rem;
-//         pointer-events: none;
-//         transition: all .3s ease-in-out;
-//     }
-// }
-
-// .select:hover::after {
-//         background-color: #fff;
-//         color: rgb(2, 182, 125);
-// }
-
-

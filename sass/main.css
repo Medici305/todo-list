@@ -137,7 +137,7 @@ form .select select option {
   color: #fff;
   cursor: pointer;
 }
-.todo-container .todo-list .todo-div .trash-btn .material-icons, .todo-container .todo-list .todo-div .complete-btn .material-icons {
+.todo-container .todo-list .todo-div .trash-btn i, .todo-container .todo-list .todo-div .complete-btn i {
   pointer-events: none;
 }
 .todo-container .todo-list .todo-div .complete-btn {
